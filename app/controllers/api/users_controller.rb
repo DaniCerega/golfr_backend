@@ -5,7 +5,6 @@ module Api
 
     def login
       user = User.find_by('lower(email) = ?', params[:email])
-
       if user.blank? || !user.valid_password?(params[:password])
         render json: {
           errors: [
@@ -16,7 +15,6 @@ module Api
       end
 
       sign_in(:user, user)
-
       render json: {
         user: {
           id: user.id,
@@ -26,5 +24,17 @@ module Api
         }
       }.to_json
     end
+
+    def feed
+      debugger
+      user = User.find_by(id: params[:id])
+      render json: {
+        user: {
+          id: user.id,
+          name: user.name,
+        },
+      }.to_json
+    end
   end
 end
+
