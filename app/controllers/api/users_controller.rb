@@ -36,8 +36,6 @@ module Api
           scores: user.scores,
         }
       }.to_json
-
     end
   end
-
 end
